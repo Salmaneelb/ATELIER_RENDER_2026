@@ -34,5 +34,39 @@ env_vars = {
     value = "production"
   }
 }
+# Flask Web Service
+resource "render_web_service" "flask" {
+  name   = "flask-app-TONNOM"
+  region = "frankfurt"
+  plan   = "free"
+
+  runtime_source = {
+    image = {
+      image_url = "ghcr.io/TON_GITHUB_USERNAME/TON_REPO:latest"
+    }
+  }
+
+  env_vars = {
+    DATABASE_URL = {
+      value = "postgresql://..." # Colle ton Internal Database URL ici
+    }
+    ENV = {
+      value = "production"
+    }
+  }
+}
+
+# Adminer Web Service
+resource "render_web_service" "adminer" {
+  name   = "adminer-TONNOM"
+  region = "frankfurt"
+  plan   = "free"
+
+  runtime_source = {
+    image = {
+      image_url = "adminer:latest"
+    }
+  }
+}
 
 }
